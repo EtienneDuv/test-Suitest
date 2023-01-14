@@ -1,9 +1,12 @@
 const handlers = require('../handlers');
+const middlewares = require('../middlewares');
 
 module.exports = (app) => {
-    app.post('/user', async (req, res) => {
-        res.json(await handlers.createUser(req));
-    });
+    app.post(
+        '/user',
+        middlewares.hashPassword,
+        handlers.createUser
+    );
 
     app.patch('/addMoney', async (req, res) => {
         // res.json(handlers.createUser);

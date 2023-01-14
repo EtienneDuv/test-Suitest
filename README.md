@@ -2,9 +2,6 @@
 technical test for Suitest company
 
 **TODO**
-- database service
-- SQL schema
-- POST create user (name|email|password)
 - PATCH add money (userId|amount|password)
 - PATCH withdraw money (userId|amount|password)
 
