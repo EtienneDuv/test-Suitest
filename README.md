@@ -13,11 +13,9 @@ technical test for Suitest company
 │   ├── database
 │   └── utils.js
 ├── validation
+│   └── body
 └── app.js
 ``` 
-
-**TODO**
-AJV validation
 
 # Run the app
 
@@ -33,7 +31,9 @@ docker run
     postgres
 ```
 
-run `npm start`
+Install dependencies `npm install`
+
+Run the app `npm start`
 
 ## Test the endpoints
 
@@ -53,7 +53,7 @@ curl --location --request POST localhost:3000/user ^
 curl --location --request POST localhost:3000/addMoney ^
 --header Content-Type: application/x-www-form-urlencoded ^
 --data-urlencode accountId=1 ^
---data-urlencode money=10 ^
+--data-urlencode amount=10 ^
 --data-urlencode password=Password1!
 ```
 
@@ -63,6 +63,6 @@ curl --location --request POST localhost:3000/addMoney ^
 curl --location --request POST localhost:3000/withdrawMoney ^
 --header Content-Type: application/x-www-form-urlencoded ^
 --data-urlencode accountId=1 ^
---data-urlencode money=10 ^
+--data-urlencode amount=10 ^
 --data-urlencode password=Password1!
 ```
