@@ -8,11 +8,15 @@ module.exports = (app) => {
         handlers.createUser
     );
 
-    app.patch('/addMoney', async (req, res) => {
-        // res.json(handlers.createUser);
-    });
+    app.post(
+        '/addMoney',
+        middlewares.verifyAccountOwnership,
+        handlers.addMoney
+    );
 
-    app.patch('/withdrawMoney', async (req, res) => {
-        // res.json(handlers.createUser);
-    });
+    app.post(
+        '/withdrawMoney',
+        middlewares.verifyAccountOwnership,
+        handlers.withdrawMoney
+    );
 };

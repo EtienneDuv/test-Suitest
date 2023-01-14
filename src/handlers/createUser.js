@@ -5,20 +5,22 @@ module.exports = async (req, res, next) => {
 
     try {
         // CREATE USER
-        await dbQuery(`
+        let response = await dbQuery(`
           INSERT INTO Users (name, email, password) values
           ('${name}', '${email}', '${password}');
+
+          SELECT id FROM Users WHERE email = '${email}';
         `);
-        let response = await dbQuery(`SELECT id FROM Users WHERE email = '${email}'`);
-        const createdUser = response.rows[0];
+        const createdUser = response[1].rows[0];
 
         // CREATE ACCOUNT
-        await dbQuery(`
-          INSERT INTO Accounts (userId, money) 
+        response = await dbQuery(`
+          INSERT INTO Accounts (userId, balance) 
           values ('${createdUser.id}', 0);
+
+          SELECT id FROM Accounts WHERE userId = '${createdUser.id}';
         `);
-        response = await dbQuery(`SELECT id FROM Accounts WHERE userId = '${createdUser.id}'`);
-        const createdAccount = response.rows[0];
+        const createdAccount = response[1].rows[0];
 
         res.json({accountId: createdAccount.id});
     } catch (err) {

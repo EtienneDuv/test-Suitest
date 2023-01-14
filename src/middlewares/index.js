@@ -1,3 +1,4 @@
 module.exports = {
-    hashPassword: require('./hashPassword')
+    hashPassword          : require('./hashPassword'),
+    verifyAccountOwnership: require('./verifyAccountOwnership'),
 };

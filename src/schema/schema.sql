@@ -9,7 +9,8 @@ CREATE TABLE users (
 CREATE TABLE accounts (
   id SERIAL,
   userId SERIAL NOT NULL,
-  money float NOT NULL,
+  balance float NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (userId) REFERENCES Users ON DELETE CASCADE
+  FOREIGN KEY (userId) REFERENCES Users ON DELETE CASCADE,
+  CONSTRAINT no_negative_balance CHECK (balance >= 0)
 );

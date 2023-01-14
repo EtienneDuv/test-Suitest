@@ -1,11 +1,22 @@
 # test-Suitest
 technical test for Suitest company
 
-**TODO**
-- PATCH add money (userId|amount|password)
-- PATCH withdraw money (userId|amount|password)
+**Application structure**
+```
+.
+├── errors
+├── handlers
+├── middlewares
+├── routes
+├── schema
+├── services
+│   ├── database
+│   └── utils.js
+├── validation
+└── app.js
+``` 
 
-**LATER**
+**TODO**
 AJV validation
 
 # Run the app
@@ -23,3 +34,35 @@ docker run
 ```
 
 run `npm start`
+
+## Test the endpoints
+
+Either use Postman or similar softwares, or use cURL: 
+
+**Create user** (valid for Windows only)
+```
+curl --location --request POST localhost:3000/user ^
+--header Content-Type: application/x-www-form-urlencoded ^
+--data-urlencode password=Password1! ^
+--data-urlencode name=EtienneDuv ^
+--data-urlencode email=aaaaaaa+test@gmail.com
+```
+
+**Add money endpoint**
+```
+curl --location --request POST localhost:3000/addMoney ^
+--header Content-Type: application/x-www-form-urlencoded ^
+--data-urlencode accountId=1 ^
+--data-urlencode money=10 ^
+--data-urlencode password=Password1!
+```
+
+
+**Withdraw money endpoint**
+```
+curl --location --request POST localhost:3000/withdrawMoney ^
+--header Content-Type: application/x-www-form-urlencoded ^
+--data-urlencode accountId=1 ^
+--data-urlencode money=10 ^
+--data-urlencode password=Password1!
+```
